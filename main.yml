@@ -1,0 +1,15 @@
+- hosts: 127.0.0.1
+  connection: local
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: build image
+      command: "docker build -t {{ image_name }} ."
+
+    - name: docker tag
+      command: "docker tag {{ image_name }} {{ image_name }}:{{ item }}"
+      with_items: "{{ tags }}"
+
+    - name: docker push
+      command: "docker push {{ image_name }}:{{ item }}"
+      with_items: "{{ tags }}"

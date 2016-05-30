@@ -1,0 +1,10 @@
+version: '2'
+services:
+  soapui:
+    image: jeqo/soapui-mock-runner:5.1.2
+    ports:
+     - "8088:8080"
+    volumes:
+     - ./soapui-prj:/opt/soapui/projects
+    environment:
+      MOCK_SERVICE_NAME: BLZ-SOAP11-MockService
